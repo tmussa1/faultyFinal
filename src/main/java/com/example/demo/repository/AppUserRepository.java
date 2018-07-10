@@ -1,4 +1,8 @@
 package com.example.demo.repository;
 
-public class AppUserRepository {
+import com.example.demo.models.AppUser;
+import org.springframework.data.repository.CrudRepository;
+
+public interface AppUserRepository extends CrudRepository<AppUser, Long> {
+    AppUser findByUsername(String username);
 }
