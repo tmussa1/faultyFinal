@@ -1,19 +1,30 @@
 package com.example.demo.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String name;
-    private String major;
+    private int studentNumber;
     private String yearOfEntry;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    Major major;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<OurClass> ourClass;
+
+    public Student(){
+        this.ourClass = new HashSet<>();
+    }
+
     public long getId() {
         return id;
     }
@@ -30,14 +41,6 @@ public class Student {
         this.name = name;
     }
 
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
     public String getYearOfEntry() {
         return yearOfEntry;
     }
@@ -46,5 +49,27 @@ public class Student {
         this.yearOfEntry = yearOfEntry;
     }
 
+    public int getStudentNumber() {
+        return studentNumber;
+    }
 
+    public void setStudentNumber(int studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
+
+    public Set<OurClass> getOurClass() {
+        return ourClass;
+    }
+
+    public void setOurClass(Set<OurClass> ourClass) {
+        this.ourClass = ourClass;
+    }
 }

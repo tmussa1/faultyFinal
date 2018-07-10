@@ -1,22 +1,29 @@
 package com.example.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
-
-
 public class Instructure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
-    private String name;
-    private String department;
-    private String officeNumber;
+
+    private int employeeNumber;
+    private String employeeName;
+    private int officeNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    Department department;
+
+    @OneToMany(mappedBy = "instructure", fetch = FetchType.EAGER)
+    Set<OurClass> classes;
+
+    public Instructure(){
+        this.classes = new HashSet<>();
+    }
 
     public long getId() {
         return id;
@@ -26,30 +33,43 @@ public class Instructure {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getEmployeeNumber() {
+        return employeeNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployeeNumber(int employeeNumber) {
+        this.employeeNumber = employeeNumber;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public String getOfficeNumber() {
+    public int getOfficeNumber() {
         return officeNumber;
     }
 
-    public void setOfficeNumber(String officeNumber) {
+    public void setOfficeNumber(int officeNumber) {
         this.officeNumber = officeNumber;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
+    public Set<OurClass> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Set<OurClass> classes) {
+        this.classes = classes;
+    }
 }
