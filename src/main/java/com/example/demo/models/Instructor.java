@@ -1,18 +1,15 @@
 package com.example.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 
 
-public class Instructure {
+public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @OneToMany(mappedBy="course")
     private long id;
     private String name;
     private String department;

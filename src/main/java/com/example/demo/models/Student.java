@@ -1,25 +1,29 @@
 package com.example.demo.models;
 
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long studentNumber;
+
     private String name;
-    private String major;
+
+    @ManyToOne(mappedBy="students")
+    private Major major;
+
     private String yearOfEntry;
-    public long getId() {
-        return id;
+
+    public long getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStudentNumber(long studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getName() {
@@ -30,11 +34,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getMajor() {
+    public Major getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Major major) {
         this.major = major;
     }
 
@@ -45,6 +49,4 @@ public class Student {
     public void setYearOfEntry(String yearOfEntry) {
         this.yearOfEntry = yearOfEntry;
     }
-
-
 }
