@@ -15,6 +15,9 @@ public class Instructure {
     private String employeeName;
     private int officeNumber;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    AppUser appUser;
+
     @ManyToOne(fetch = FetchType.LAZY)
     Department department;
 
@@ -71,5 +74,13 @@ public class Instructure {
 
     public void setClasses(Set<OurClass> classes) {
         this.classes = classes;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

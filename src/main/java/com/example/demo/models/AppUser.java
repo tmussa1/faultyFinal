@@ -13,12 +13,17 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String fullName;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     Set<AppRole> roles;
+
+    @OneToOne(mappedBy="appUser", fetch = FetchType.EAGER)
+    Instructure instructure;
+
+    @ManyToMany(mappedBy = "users" , fetch = FetchType.EAGER)
+    Set<OurClass>classes;
 
     public AppUser(){
         this.roles = new HashSet<>();
@@ -26,8 +31,9 @@ public class AppUser {
 
     public AppUser(String userName, String passWord) {
         this.roles = new HashSet<>();
-        this.userName = userName;
-        this.passWord = passWord;
+        this.classes = new HashSet<>();
+        this.username = userName;
+        this.password = passWord;
     }
 
     public void addRole(AppRole role){
@@ -42,28 +48,20 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = new BCryptPasswordEncoder().encode(passWord);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<AppRole> getRoles() {
@@ -74,6 +72,12 @@ public class AppUser {
         this.roles = roles;
     }
 
+    public Instructure getInstructure() {
+        return instructure;
+    }
 
+    public void setInstructure(Instructure instructure) {
+        this.instructure = instructure;
+    }
 }
 

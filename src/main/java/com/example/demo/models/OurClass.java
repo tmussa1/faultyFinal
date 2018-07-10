@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +15,9 @@ public class OurClass {
     private String crn;
     private String courseNumber;
     private String subjectCode;
+    private int yearterm;
+    private String name;
+    private HashMap<Integer, String> grades;
 
     @ManyToOne(fetch = FetchType.LAZY)
     Classroom classroom;
@@ -23,8 +28,12 @@ public class OurClass {
     @ManyToMany(fetch =FetchType.EAGER)
     Set<Student> students;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<AppUser> users;
+
     public OurClass(){
         this.students = new HashSet<>();
+        this.grades = new HashMap<>();
     }
 
     public long getId() {
@@ -81,5 +90,33 @@ public class OurClass {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public int getYearterm() {
+        return yearterm;
+    }
+
+    public void setYearterm(int yearterm) {
+        this.yearterm = yearterm;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<AppUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<AppUser> users) {
+        this.users = users;
+    }
+
+    public void addGrade(Student student, String grade){
+        grades.put(student.getStudentNumber(), grade);
     }
 }

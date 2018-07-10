@@ -1,4 +1,9 @@
 package com.example.demo.repository;
 
-public class StudentRepository {
+import com.example.demo.models.OurClass;
+import com.example.demo.models.Student;
+import org.springframework.data.repository.CrudRepository;
+
+public interface StudentRepository extends CrudRepository<Student, Long> {
+    Iterable<Student> findAllByOurClass(OurClass ourclass);
 }
