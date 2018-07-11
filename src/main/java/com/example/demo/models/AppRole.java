@@ -10,7 +10,7 @@ public class AppRole {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     Set<AppUser> users;
 
     private String roleName;

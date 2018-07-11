@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transcript</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/adduser">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/transcript">Transcript</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/enroll">Enrollment Form</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/allcourses">All Courses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/currentsemester">Courses in Current Semester</a>
+        </li>
+    </ul>
+</nav>
+<div class="jumbotron">
+    <h1 class="text-black-50 text-center display-3">Transcript</h1>
+</div>
+<!--add th:object for the student-->
+<ul class="list-group">
+    <li>Student</li>
+    <li class="list-group-item">
+        <!--&lt;!&ndash;add th: field for student number&ndash;&gt;-->
+        <!--<span th:text="${student.studentNumber}"> 2222 </span>-->
+        <!--&lt;!&ndash;add th:field for the student name&ndash;&gt;-->
+        <!--<span th:text="${student.name}"> Joe Student </span>-->
+        <!--&lt;!&ndash;add th:field for the student major&ndash;&gt;-->
+        <!--<span th:text="${student.major.majorName}"> Computer Science </span>-->
+        <!--&lt;!&ndash;add th:field for the year of entry&ndash;&gt;-->
+        <!--<span th:text="${student.yearOfEntry}"> 2018 </span>-->
+    </li>
+</ul>
+
+<!--add th:object for the class-->
+<div>
+    <ul class="list-group">
+        <li>Course</li>
+        <li class="list-group-item">
+            <!--add th: field for course number-->
+            <span> ENG 101 </span>
+            <!--add th:field for the class name-->
+            <span> Freshman Composition </span>
+            <!--add th:field for the credits-->
+            <span> 3 </span>
+            <!--add th:field for the department-->
+            <span> English Department </span>
+        </li>
+    </ul>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>

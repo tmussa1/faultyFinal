@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -20,6 +22,12 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     Department department;
 
+    @OneToMany (mappedBy = "course")
+    private Set<OurClass> classes;
+
+    public Course(){
+        this.classes = new HashSet<>();
+    }
     public long getId() {
         return id;
     }
@@ -82,5 +90,9 @@ public class Course {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public void setClasses(Set<OurClass> classes) {
+        this.classes = classes;
     }
 }

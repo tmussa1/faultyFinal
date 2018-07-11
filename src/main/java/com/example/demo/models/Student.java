@@ -14,15 +14,26 @@ public class Student {
     private String name;
     private int studentNumber;
     private String yearOfEntry;
+    private String letterGrade;
 
     @ManyToOne(fetch = FetchType.LAZY)
     Major major;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     Set<OurClass> ourClass;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    Set<AppUser> appUsers;
+
+    public void addClass(OurClass oc){
+        ourClass.add(oc);
+    }
+    public void addUser(AppUser user){
+        appUsers.add(user);
+    }
     public Student(){
         this.ourClass = new HashSet<>();
+        this.appUsers = new HashSet<>();
     }
 
     public long getId() {
@@ -71,5 +82,13 @@ public class Student {
 
     public void setOurClass(Set<OurClass> ourClass) {
         this.ourClass = ourClass;
+    }
+
+    public String getLetterGrade() {
+        return letterGrade;
+    }
+
+    public void setLetterGrade(String letterGrade) {
+        this.letterGrade = letterGrade;
     }
 }

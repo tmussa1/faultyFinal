@@ -16,7 +16,7 @@ public class AppUser {
     private String username;
     private String password;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     Set<AppRole> roles;
 
     @OneToOne(mappedBy="appUser", fetch = FetchType.EAGER)
@@ -25,6 +25,10 @@ public class AppUser {
     @ManyToMany(mappedBy = "users" , fetch = FetchType.EAGER)
     Set<OurClass>classes;
 
+    @ManyToMany(mappedBy = "appUsers", fetch = FetchType.EAGER)
+    Set<Student> students;
+
+
     public AppUser(){
         this.roles = new HashSet<>();
     }
@@ -32,6 +36,7 @@ public class AppUser {
     public AppUser(String userName, String passWord) {
         this.roles = new HashSet<>();
         this.classes = new HashSet<>();
+        this.students = new HashSet<>();
         this.username = userName;
         this.password = passWord;
     }
@@ -39,7 +44,10 @@ public class AppUser {
     public void addRole(AppRole role){
         roles.add(role);
     }
-
+    public void addClass(OurClass ourclass){
+       classes.add(ourclass);
+    }
+    public void addStudent(Student std){students.add(std);}
     public long getId() {
         return id;
     }
@@ -61,7 +69,7 @@ public class AppUser {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public Set<AppRole> getRoles() {

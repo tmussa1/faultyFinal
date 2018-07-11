@@ -17,7 +17,6 @@ public class OurClass {
     private String subjectCode;
     private int yearterm;
     private String name;
-    private HashMap<Integer, String> grades;
 
     @ManyToOne(fetch = FetchType.LAZY)
     Classroom classroom;
@@ -25,17 +24,29 @@ public class OurClass {
     @ManyToOne(fetch = FetchType.LAZY)
     Instructure instructure;
 
-    @ManyToMany(fetch =FetchType.EAGER)
+    @ManyToMany(mappedBy = "ourClass",fetch =FetchType.EAGER)
     Set<Student> students;
 
     @ManyToMany(fetch = FetchType.EAGER)
     Set<AppUser> users;
 
+    @ManyToOne
+    private Course course;
+
     public OurClass(){
         this.students = new HashSet<>();
-        this.grades = new HashMap<>();
     }
 
+    public void addStudent(Student stu){
+        students.add(stu);
+    }
+
+    public void addUsers(AppUser au){
+        users.add(au);
+    }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
     public long getId() {
         return id;
     }
@@ -116,7 +127,4 @@ public class OurClass {
         this.users = users;
     }
 
-    public void addGrade(Student student, String grade){
-        grades.put(student.getStudentNumber(), grade);
-    }
 }

@@ -9,5 +9,5 @@ import java.util.Date;
 
 public interface OurClassRepository extends CrudRepository<OurClass, Long> {
     Iterable<OurClass> findAllByInstructure(Instructure instructure);
-    Iterable<OurClass> findAllByYeartermAfter(int year);
+    Iterable<OurClass> findAllByYeartermGreaterThan(int year);
 }

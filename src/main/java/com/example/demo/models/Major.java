@@ -26,6 +26,10 @@ public class Major {
         this.courses = new HashSet<>();
     }
 
+    public void addStudents(Student stu){
+        students.add(stu);
+    }
+
     public long getId() {
         return id;
     }

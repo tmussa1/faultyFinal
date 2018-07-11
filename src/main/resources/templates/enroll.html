@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enrollment Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/adduser">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/transcript">Transcript</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/enroll">Enrollment Form</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/allcourses">All Courses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/currentsemester">Courses in Current Semester</a>
+        </li>
+    </ul>
+</nav>
+<h1>Enrollment Form</h1>
+<div class="container">
+    <form th:action="@{/saveclass}" method="post">
+        <div class="form-group">
+            <label>CRN: </label>
+            <span class = "form-control">10072 </span> <br/>
+        </div>
+        <div class="form-group">
+            <label>Course Number:</label>
+            <span class = "form-control"> 1010</span> <br/>
+        </div>
+        <div class="form-group">
+            <label>Subject Code:</label>
+            <span class = "form-control"> BIO</span> <br/>
+        </div>
+        <div class="form-group">
+            <label>Classroom:</label>
+            <span class = "form-control"> Humanities Bldg Rm 31</span> <br/>
+        </div>
+        <div class="form-group">
+            <label>Instructor:</label>
+            <span class = "form-control"> Dave Wolf </span> <br/>
+        </div>
+        <button type="submit"  class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>

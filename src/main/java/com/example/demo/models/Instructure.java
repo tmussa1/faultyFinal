@@ -13,7 +13,7 @@ public class Instructure {
 
     private int employeeNumber;
     private String employeeName;
-    private int officeNumber;
+    private String officeNumber;
 
     @OneToOne(fetch = FetchType.LAZY)
     AppUser appUser;
@@ -23,6 +23,11 @@ public class Instructure {
 
     @OneToMany(mappedBy = "instructure", fetch = FetchType.EAGER)
     Set<OurClass> classes;
+
+    public void addClass(OurClass ourclass){
+        classes.add(ourclass);
+    }
+
 
     public Instructure(){
         this.classes = new HashSet<>();
@@ -52,11 +57,11 @@ public class Instructure {
         this.employeeName = employeeName;
     }
 
-    public int getOfficeNumber() {
+    public String getOfficeNumber() {
         return officeNumber;
     }
 
-    public void setOfficeNumber(int officeNumber) {
+    public void setOfficeNumber(String officeNumber) {
         this.officeNumber = officeNumber;
     }
 

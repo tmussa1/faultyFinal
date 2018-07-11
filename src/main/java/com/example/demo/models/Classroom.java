@@ -17,6 +17,10 @@ public class Classroom {
     @OneToMany(mappedBy = "classroom", fetch = FetchType.EAGER)
     Set<OurClass> classes;
 
+    public void addClass(OurClass ourclass){
+        classes.add(ourclass);
+    }
+
     public Classroom(){
         this.classes = new HashSet<>();
     }

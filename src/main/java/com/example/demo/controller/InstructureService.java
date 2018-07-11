@@ -13,7 +13,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class InstructureService {
@@ -39,18 +42,40 @@ public class InstructureService {
         Instructure instructure = null;
 
         if(app != null){
-            instructure = app.getInstructure();
+            instructure= instructureRepository.findByAppUser(app);
         }
         return ourClassRepository.findAllByInstructure(instructure);
     }
 
     public Iterable<OurClass> getCurrentClasses(Authentication auth){
-        return ourClassRepository.findAllByYeartermAfter(LocalDateTime.now().getYear() - 1);
+        return ourClassRepository.findAllByYeartermGreaterThan(LocalDateTime.now().getYear() - 1);
     }
 
-    public Iterable<Student> getAllStudentsInMyClass(Authentication authentication){
-        AppUser app = appUserRepository.findByUsername(authentication.getName());
+    public Set<Student> getRosters(Authentication auth){
+        Iterable<OurClass> ourclasses = getAllMyClasses(auth);
+        Set<Student> students = new HashSet<>();
 
-        return studentRepository.findAllByOurClass()
+        for(OurClass cls: ourclasses) {
+            for (Student std : cls.getStudents()) {
+                students.add(std);
+            }
+        }
+        return students;
     }
+    public Set<Student> getGradesheet(Authentication auth){
+
+        Iterable<OurClass> ourclasses = getAllMyClasses(auth);
+        Set<Student> students = new HashSet<>();
+        Date date = new Date();
+
+        for(OurClass cls: ourclasses) {
+            for (Student std : cls.getStudents()) {
+                if(LocalDateTime.now().getYear() > cls.getYearterm()) {
+                    students.add(std);
+                }
+            }
+        }
+        return students;
+    }
+
 }

@@ -27,6 +27,18 @@ public class Department {
         this.majors = new HashSet<>();
     }
 
+    public void addInstruture(Instructure ins){
+        instructures.add(ins);
+    }
+
+    public void addCourses(Course cou){
+        courses.add(cou);
+    }
+
+    public void addMajors(Major maj){
+        majors.add(maj);
+    }
+
     public long getId() {
         return id;
     }
