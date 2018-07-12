@@ -63,6 +63,7 @@ public class DataLoader implements CommandLineRunner {
         user1.addRole(roleRepository.findByRoleName("INSTRUCTOR"));
         userRepository.save(user1);
 
+        /*
         OurClass ourClass1 = new OurClass();
         ourClass1.setCourseNumber("1010");
         ourClass1.setCrn("10072");
@@ -176,7 +177,7 @@ public class DataLoader implements CommandLineRunner {
 
         user.addClass(ourClass);
         userRepository.save(user);
-
+        */
     }
 
 }
