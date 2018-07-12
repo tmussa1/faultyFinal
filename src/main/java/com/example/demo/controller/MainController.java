@@ -57,6 +57,7 @@ public class MainController {
     public String showCurrentCourses (){
         return "currentsemester";
     }
+    /*
     @PostConstruct
     public void fillTables (){
         AppRole aRole = new AppRole();
@@ -124,7 +125,6 @@ public class MainController {
         ourClass.setInstructure(instructor);
         ourClass.setCourse(course);
         classes.save(ourClass);
-
-
     }
+    */
 }
